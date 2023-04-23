@@ -12,14 +12,14 @@ def create_app():
     # secret key that will be used for securely signing the session 
     # cookie and can be used for any other security related needs by 
     # extensions or your application
-    app.config['SECRET_KEY'] = 'someCrazyS3cR3T!Key.!'
+    app.config['SECRET_KEY'] = 'FindHer!Key.!'
 
     # these are for the DB object to be able to connect to MySQL. 
     app.config['MYSQL_DATABASE_USER'] = 'root'
     app.config['MYSQL_DATABASE_PASSWORD'] = open('/secrets/db_password.txt').readline()
     app.config['MYSQL_DATABASE_HOST'] = 'db'
     app.config['MYSQL_DATABASE_PORT'] = 3306
-    app.config['MYSQL_DATABASE_DB'] = 'northwind'  # Change this to your DB name
+    app.config['MYSQL_DATABASE_DB'] = 'FindHerReviews'  # Change this to your DB name
 
     # Initialize the database object with the settings above. 
     db.init_app(app)
