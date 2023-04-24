@@ -12,7 +12,7 @@ def create_app():
     # secret key that will be used for securely signing the session 
     # cookie and can be used for any other security related needs by 
     # extensions or your application
-    app.config['SECRET_KEY'] = 'FindHer!Key.!'
+    app.config['SECRET_KEY'] = 'someCrazyS3cR3T!Key.!'
 
     # these are for the DB object to be able to connect to MySQL. 
     app.config['MYSQL_DATABASE_USER'] = 'root'
@@ -30,12 +30,12 @@ def create_app():
         return "<h1>Welcome to the Findher MVP Basic</h1>"
 
     # Import the various routes
-    from src.Users import users
-    from src.Workplaces import workplaces
+    from src.users.users import users
+    #from src.workplaces.workplaces import workplaces
 
     # Register the routes that we just imported so they can be properly handled
     app.register_blueprint(users,       url_prefix='/u')
-    app.register_blueprint(workplaces,   url_prefix='/w')
+    #app.register_blueprint(workplaces,   url_prefix='/w')
 
 
     return app
