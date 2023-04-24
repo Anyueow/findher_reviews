@@ -27,7 +27,7 @@ def create_app():
     # Add a default route
     @app.route("/")
     def welcome():
-        return "<h1>Welcome to the 3200 boilerplate app</h1>"
+        return "<h1>Welcome to the Findher MVP Basic</h1>"
 
     # Import the various routes
     from src.Users import users
