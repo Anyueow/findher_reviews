@@ -19,7 +19,7 @@ def create_app():
     app.config['MYSQL_DATABASE_PASSWORD'] = open('/secrets/db_password.txt').readline()
     app.config['MYSQL_DATABASE_HOST'] = 'db'
     app.config['MYSQL_DATABASE_PORT'] = 3306
-    app.config['MYSQL_DATABASE_DB'] = 'FindHerReviews'  # Change this to your DB name
+    app.config['MYSQL_DATABASE_DB'] = 'FindherReviews'  # Change this to your DB name
 
     # Initialize the database object with the settings above. 
     db.init_app(app)
@@ -31,11 +31,11 @@ def create_app():
 
     # Import the various routes
     from src.users.users import users
-    #from src.workplaces.workplaces import workplaces
+    from src.workplaces.workplaces import workplaces
 
     # Register the routes that we just imported so they can be properly handled
     app.register_blueprint(users,       url_prefix='/u')
-    #app.register_blueprint(workplaces,   url_prefix='/w')
+    app.register_blueprint(workplaces,   url_prefix='/w')
 
 
     return app
