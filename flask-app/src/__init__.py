@@ -32,10 +32,12 @@ def create_app():
     # Import the various routes
     from src.users.users import users
     from src.workplaces.workplaces import workplaces
+    from src.locations.locations import locations
 
     # Register the routes that we just imported so they can be properly handled
     app.register_blueprint(users,       url_prefix='/u')
     app.register_blueprint(workplaces,   url_prefix='/w')
+    app.register_blueprint(locations,   url_prefix='/l')
 
 
     return app

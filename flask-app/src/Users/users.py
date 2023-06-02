@@ -12,9 +12,9 @@ def add_user():
 
     user_info = request.json
 
-    user_tuple = f"('{user_info.get('username', 'NULL')}', '{user_info.get('email', 'NULL')}', '{user_info.get('password', 'NULL')}')"
+    user_tuple = f"('{user_info.get('firstname', 'NULL')}', '{user_info.get('lastname', 'NULL')}', '{user_info.get('phonenumber', 'NULL')}', '{user_info.get('email', 'NULL')}', '{user_info.get('password', 'NULL')}')"
     
-    query = f"INSERT INTO users(username, email, password) VALUES {user_tuple}"
+    query = f"INSERT INTO users(firstname, lastname, phonenumber, email, password) VALUES {user_tuple}"
 
     cursor.execute(query)
 
@@ -70,15 +70,19 @@ def login():
 @users.route('/users/userid/<username>', methods=['GET'])
 def get_user_id(username):
     cursor = db.get_db().cursor()
-    cursor.execute("SELECT user_id FROM users WHERE username=%s", (username,))
-    user_id = cursor.fetchone()
-    if user_id:
-        return jsonify({'user_id': user_id[0]}), 200
-    else:
-        return jsonify({'error': 'User not found'}), 404
+    user_id = cursor.execute("SELECT user_id FROM users WHERE username=%s", (username,))
 
-if __name__ == '__main__':
-    users.run(debug=True)
+    user_id = cursor.fetchone()
+
+    if user_id is not None:
+        # Return user ID as a string
+        return str(user_id[0])
+        # Or, return user ID as a JSON object
+        # return jsonify({'user_id': user_id[0]})
+    else:
+        # Return an error response if user not found
+        return jsonify({'error': 'User not found'}), 404
+    
 
 @users.route('/users/username/<user_id>', methods=['GET'])
 def get_username(user_id):
